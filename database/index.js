@@ -36,9 +36,9 @@ let save = (id, obj) => {
   });
 };
 
-let getRepoCount = (callback) => {
+let getRepos = (callback) => {
   Repo.find({}, callback);
 };
 
 module.exports.save = save;
-module.exports.getRepoCount = getRepoCount;
+module.exports.getRepos = getRepos;

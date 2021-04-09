@@ -43,7 +43,7 @@ app.post('/repos', function (req, res) {
         res.end('Could not search and store data');
       } else {
         res.status(200);
-        res.end(rawResponse.length.toString());
+        res.end(JSON.stringify(rawResponse));
       }
     });
   });

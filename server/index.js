@@ -58,6 +58,18 @@ app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
 });
 
+app.get('/allrepos', function(req, res) {
+  mongo.getRepos((err, rawResponse) => {
+    if (err) {
+      res.status(400);
+      res.end('Could not search and store data');
+    } else {
+      res.status(200);
+      res.end(JSON.stringify(rawResponse));
+    }
+  });
+});
+
 let port = 1128;
 
 app.listen(port, function() {

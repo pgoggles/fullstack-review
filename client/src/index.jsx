@@ -8,17 +8,27 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
     };
 
   }
-
+  componentDidMount () {
+    this.getRepoCount();
+  }
   search (term) {
     // console.log(`${term} was searched`);
     $.ajax({
       type: 'POST',
       url: '/repos',
       data: {searchTerm: term},
+      success: (data) => this.setState ({repos: JSON.parse(data)})
+    });
+  }
+
+  getRepoCount () {
+    $.ajax({
+      type: 'GET',
+      url: '/allrepos',
       success: (data) => this.setState ({repos: JSON.parse(data)})
     });
   }

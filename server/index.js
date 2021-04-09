@@ -3,6 +3,7 @@ let app = express();
 
 const github = require('../helpers/github.js');
 const bodyParser = require('body-parser');
+const mongo = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded());
@@ -10,8 +11,41 @@ app.use(bodyParser.urlencoded());
 app.post('/repos', function (req, res) {
   var searchTerm = req.body.searchTerm;
   github.getReposByUsername(searchTerm, (data) => {
-    res.status(200);
-    res.end(JSON.stringify(data.data));
+    for (var i = 0; i < data.data.length; i++) {
+      var obj = {
+        name: data.data[i].name,
+        id: data.data[i].id,
+        url: data.data[i].html_url,
+        forks: {
+          forkCount: data.data[i].forks_count,
+          forkUrl: data.data[i].forks_url
+        },
+        watchers: data.data[i].watchers,
+        openIssues: {
+          issueCount: data.data[i].open_issues_count,
+          issueUrl: data.data[i].issues_url,
+        },
+        download: {
+          hasDownloads: data.data[i].has_downloads,
+          downloadUrl: data.data[i].downloads_url,
+        },
+        owner: {
+          name: data.data[i].owner.login,
+          url: data.data[i].owner.url,
+          profilePicture: data.data[i].owner.avatar_url,
+        }
+      };
+      mongo.save(data.data[i].id, obj);
+    }
+    mongo.getRepoCount((err, rawResponse) => {
+      if (err) {
+        res.status(400);
+        res.end('Could not search and store data');
+      } else {
+        res.status(200);
+        res.end(rawResponse.length.toString());
+      }
+    });
   });
   // TODO - your code here!
   // This route should take the github username provided

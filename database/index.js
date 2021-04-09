@@ -20,6 +20,7 @@ let repoSchema = mongoose.Schema({
     downloadUrl: String,
   },
   owner: {
+    name: String,
     url: String,
     profilePicture: String,
   }
@@ -27,10 +28,17 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (/* TODO */) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+let save = (id, obj) => {
+  Repo.updateOne({id: id}, obj, {upsert: true}, (err, rawResponse) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+
+let getRepoCount = (callback) => {
+  Repo.find({}, callback);
 };
 
 module.exports.save = save;
+module.exports.getRepoCount = getRepoCount;

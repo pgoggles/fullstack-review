@@ -37,7 +37,7 @@ app.post('/repos', function (req, res) {
       };
       mongo.save(data.data[i].id, obj);
     }
-    mongo.getRepoCount((err, rawResponse) => {
+    mongo.getRepos((err, rawResponse) => {
       if (err) {
         res.status(400);
         res.end('Could not search and store data');

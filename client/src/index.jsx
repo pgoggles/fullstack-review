@@ -14,12 +14,12 @@ class App extends React.Component {
   }
 
   search (term) {
-    console.log(`${term} was searched`);
+    // console.log(`${term} was searched`);
     $.ajax({
       type: 'POST',
       url: '/repos',
       data: {searchTerm: term},
-      success: (data) => console.log(data)
+      success: (data) => this.setState ({repos: JSON.parse(data)})
     });
   }
 

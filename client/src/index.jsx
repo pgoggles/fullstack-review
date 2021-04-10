@@ -28,10 +28,11 @@ class App extends React.Component {
   getRepoCount () {
     $.ajax({
       type: 'GET',
-      url: '/allrepos',
-      success: (data) => this.setState ({repos: JSON.parse(data)})
+      url: '/repos',
+      success: (data) => this.setState({repos: JSON.parse(data)})
     });
   }
+
 
   render () {
     return (<div>

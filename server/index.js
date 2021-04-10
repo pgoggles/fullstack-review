@@ -53,12 +53,7 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
 });
 
-app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
-});
-
-app.get('/allrepos', function(req, res) {
+app.get('/repos', function(req, res) {
   mongo.getRepos((err, rawResponse) => {
     if (err) {
       res.status(400);

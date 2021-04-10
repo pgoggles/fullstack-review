@@ -37,7 +37,7 @@ let save = (id, obj) => {
 };
 
 let getRepos = (callback) => {
-  Repo.find({}, callback);
+  Repo.find({}).sort({watchers: 'desc'}).exec(callback);
 };
 
 module.exports.save = save;

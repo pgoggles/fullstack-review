@@ -1,0 +1,76 @@
+h1 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+}
+
+h4 {
+  font-weight: 300;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.OverallFlex {
+  display: flex;
+  flex-direction: row;
+}
+
+.Search {
+  padding-left: 20px;
+}
+
+.SearchBar {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 100;
+}
+
+.RepoEntry {
+  font-weight: 200;
+  font-family: 'Noto Sans JP', sans-serif;
+  border: 2px solid black;
+  height: 80px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.Flex2 {
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.SubFlex2 {
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+}
+
+.Fork {
+  padding-right: 8px;
+}
+
+.Watchers {
+  padding-right: 8px;
+}
+
+.Issues {
+  padding-right: 8px;
+}
+
+.AuthorName {
+  padding-left: 40px;
+}
+
+.RepoEntryName {
+  font-weight: 300;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.RepoImage {
+  padding-top: 12px;
+  padding-left: 4px;
+}

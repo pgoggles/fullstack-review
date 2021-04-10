@@ -37,8 +37,14 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
+      <div class="OverallFlex">
+        <div class="RepoList">
+          <RepoList repos={this.state.repos}/>
+        </div>
+        <div class="Search">
+          <Search onSearch={this.search.bind(this)}/>
+        </div>
+      </div>
     </div>);
   }
 }
